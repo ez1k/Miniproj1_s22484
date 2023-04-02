@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -22,6 +23,24 @@ public class Main {
             switch (option){
                 case 1:
 
+                    break;
+                case 2:
+                    Produkt p = new Produkt();
+                    try {
+
+                        System.out.println("Podaj nazwe produktu");
+                        p.SetName(scanner.next());
+                        System.out.println("Podaj cene produktu");
+                        p.SetCost(scanner.nextFloat());
+                        System.out.println("Podaj date końca ważności produktu");
+                        p.SetExpiringDate(scanner.next());
+                    }catch (InputMismatchException e)
+                    {
+                        System.out.println("Złe dane");
+
+                    }
+
+                    System.out.println(p.toString());
                     break;
             }
         }
