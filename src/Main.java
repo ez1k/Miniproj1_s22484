@@ -42,6 +42,9 @@ public class Main {
 
                     System.out.println(p.toString());
                     break;
+                default:
+                    breakflag = true;
+                    break;
             }
         }
     }

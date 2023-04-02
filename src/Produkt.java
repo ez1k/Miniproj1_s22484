@@ -15,6 +15,13 @@ public class Produkt implements Serializable {
         this.expiring_date = expiring_date;
         list.add(this);
     }
+    public Produkt (String name, float cost)
+    {
+        this.name = name;
+        this.cost = cost;
+        this.expiring_date = "";
+        list.add(this);
+    }
     public Produkt ()
     {
         this.name = "";
