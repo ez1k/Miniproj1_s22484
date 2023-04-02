@@ -25,7 +25,7 @@ public class Main {
 
                     break;
                 case 2:
-                    Produkt p = new Produkt();
+                    Product p = new Product();
                     try {
 
                         System.out.println("Podaj nazwe produktu");
