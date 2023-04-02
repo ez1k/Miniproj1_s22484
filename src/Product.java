@@ -3,20 +3,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Product implements Serializable {
-    List<Product> list = new ArrayList<>();
+    static List<Product> list = new ArrayList<>();
+    int id;
     private String name;
-    private float cost;
+    private double cost;
     private String expiring_date;
 
-    public Product (String name, float cost, String expiring_date)
+    public Product (int id, String name, double cost, String expiring_date)
     {
+        this.id = id;
         this.name = name;
         this.cost = cost;
         this.expiring_date = expiring_date;
         list.add(this);
     }
-    public Product (String name, float cost)
+    public Product (int id, String name, float cost)
     {
+        this.id = id;
         this.name = name;
         this.cost = cost;
         this.expiring_date = "";
@@ -44,5 +47,9 @@ public class Product implements Serializable {
     public void SetExpiringDate(String expiring_date)
     {
         this.expiring_date = expiring_date;
+    }
+    public static void Create_Products()
+    {
+        list.add(new Product(0,"Parówki",  2.99,"2025-12-01"));
     }
 }
