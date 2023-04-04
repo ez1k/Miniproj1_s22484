@@ -1,16 +1,13 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Product implements Serializable {
-    static List<Product> products = new ArrayList<>();
-    int id;
+    private static List<Product> products = new ArrayList<>();
+    private int id;
     private String name;
-    private double cost;
     private double netto;
+    private double cost;
     private String expiring_date;
     private Category category;
     private double VAT;
@@ -43,9 +40,16 @@ public class Product implements Serializable {
         products.add(this);
     }
 
+    public static void Serialize(ObjectOutputStream out) throws IOException {
+        out.writeObject(products);
+    }
+    public static void Deserialize(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        products = (ArrayList<Product>) in.readObject();
+    }
+
     @Override
     public String toString() {
-        return "id: "+ id + "\nname: "+ name +  "\nnetto:" + netto +"\ncost of goods: " + cost + "\nVAT: " + VAT + "\nexpiring date "+ expiring_date + this.category.toString() + "\n";
+        return "id: "+ id + " name: "+ name +  " netto: " + netto +" cost of goods: " + cost + " VAT: " + VAT + " expiring date: "+ expiring_date + " | " + this.category.toString();
     }
     public void SetName(String name)
     {
@@ -81,34 +85,7 @@ public class Product implements Serializable {
     {
        products.forEach((p) -> System.out.println(p.toString()));
     }
-    public static void writeList(DataOutputStream outputStream)
-    {
-        try {
-            outputStream.writeInt(products.size());
-            for (Product p: products) {
-                p.write(outputStream);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void write(DataOutputStream outputStream)
-    {
-        try {
-            outputStream.writeUTF(name);
-        }catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    private void read(DataInputStream inputStream)
-    {
-        try {
-            inputStream.readUTF();
-        }catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
+
+
 
 }
