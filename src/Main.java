@@ -84,6 +84,7 @@ public class Main {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(serializablefile));
             Product.Serialize(out);
+            Category.Serialize(out);
             out.close();
         } catch (IOException e)
         {
@@ -94,6 +95,7 @@ public class Main {
         try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(serializablefile));
             Product.Deserialize(in);
+            Category.Deserialize(in);
             in.close();
         } catch (IOException e)
         {

@@ -1,7 +1,4 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,5 +82,11 @@ public class Category implements Serializable {
         name = inputStream.readUTF();
         subcategoryname = inputStream.readUTF();
         category_code = inputStream.readInt();
+    }
+    public static void Serialize(ObjectOutputStream out) throws IOException {
+        out.writeObject(categories);
+    }
+    public static void Deserialize(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        categories = (ArrayList<Category>) in.readObject();
     }
 }
